@@ -7,6 +7,9 @@ import Vapor
 public func configure(_ app: Application) throws {
     // uncomment to serve files from /Public folder
     // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+    
+    let addIpLog = AddIpAddressLogMiddleware()
+    app.middleware.use(addIpLog)
 
     app.databases.use(.sqlite(.file("db.sqlite")), as: .sqlite)
 
